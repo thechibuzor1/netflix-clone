@@ -1,4 +1,4 @@
-.logo{
+.intro_logo{
     height: 95vh;
     width: 100%;
     align-self: center;
@@ -7,11 +7,12 @@
     height: 100%;
     width: 100%;
    position: absolute;
+   background-color: black;
 }
 
 /*  MEDIA QUERIES (MEDIUM DEVICES) */
 @media screen and (max-width: 1024px) {
-    .logo{
+    .intro_logo{
         height: 100%;
         width: 100%;
     }
@@ -23,7 +24,7 @@
 }
 /*  MEDIA QUERIES (SMALL DEVICES) */
 @media screen and (max-width: 600px) {
-    .logo{
+    .intro_logo{
         height:100%;
         width: 100%;
         align-self: center;

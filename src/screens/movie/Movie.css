@@ -1,0 +1,103 @@
+.play_btn {
+  font-size: 5rem;
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+.play_btn:hover {
+  color: black;
+}
+.play_btn:active {
+  color: black;
+}
+.play_btn:focus {
+  color: black;
+}
+
+.movie_player {
+  margin-top: 30px;
+  width: 100%;
+  height: 720px;
+}
+.movie_description {
+  margin-top: 30px;
+  margin-left: 50px;
+  color: white;
+}
+.movie_description h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+.movie_description p {
+  font-size: 1.3em;
+}
+.movie_description h2 {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+.similar {
+  color: white;
+}
+
+.movie .buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.movie .buttons .button {
+  margin-left: 20px;
+  border-color: black;
+  border-width: 1px;
+  background-color: red;
+  text-decoration: none;
+}
+.movie .buttons .button:hover {
+  background-color: #e6e6e6;
+}
+.movie .buttons .button:active {
+  background-color: #e6e6e6;
+  border-color: red;
+}
+.movie .buttons .button:focus {
+  background-color: #e6e6e6;
+  border-color: red;
+}
+.similar_movies {
+  margin-top: 30px;
+}
+
+@media screen and (max-width: 1024px) {
+  .movie_player {
+    width: 100%;
+    height: 480px;
+  }
+  .movie_description {
+    margin-left: 20px;
+  }
+}
+/*  MEDIA QUERIES (SMALL DEVICES) */
+@media screen and (max-width: 600px) {
+  .movie_player {
+    width: 100%;
+    height: 360px;
+  }
+  .movie_description {
+    margin-left: 20px;
+  }
+  .movie_description h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+  }
+  .movie_description p {
+    font-size: 0.7em;
+  }
+  .movie_description h2 {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+  }
+}

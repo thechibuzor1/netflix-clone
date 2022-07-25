@@ -14,7 +14,7 @@ const Splash = () => {
 
   return (
     <div className="swoop">
-      <Lottie className="logo" animationData={logo} />
+      <Lottie className="intro_logo" animationData={logo} />
     </div>
   );
 };
