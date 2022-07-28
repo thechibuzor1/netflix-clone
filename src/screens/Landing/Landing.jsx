@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Landing.css";
 import bg from "../../assests/home-bg.jpg";
 import tv from "../../assests/home-tv.jpg";
 import mobile from "../../assests/home-mobile.jpg";
 import imac from "../../assests/home-imac.jpg";
+import { useNavigate } from "react-router-dom";
 const Landing = () => {
+  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+  const handleSubmit = (prop) => {
+    if (prop.length !== 0) {
+      navigate(`/Auth`, {
+        state: { email: email, isSignup: true },
+      });
+    }
+  };
+  const login = () => {
+    navigate(`/Auth`, {
+      state: { email: email, isSignup: false },
+    });
+  };
   return (
     <>
       <div className="navbar">
@@ -14,7 +29,9 @@ const Landing = () => {
           alt="Netflix Logo"
         />
         <div className="right_icons">
-        <button className="login_btn">Login</button>
+          <button className="login_btn" onClick={() => login()}>
+            Login
+          </button>
         </div>
       </div>
       <div className="landing">
@@ -25,8 +42,19 @@ const Landing = () => {
             </h1>
             <h2>Watch anywhere. Cancel anytime.</h2>
             <div className="search_bar">
-              <input type="text" placeholder="Email address" required/>
-              <button className="search_button">TRY IT NOW {">"}</button>
+              <input
+                type="text"
+                placeholder="Email address"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <button
+                className="search_button"
+                onClick={() => handleSubmit(email)}
+              >
+                TRY IT NOW {">"}
+              </button>
             </div>
             <p>
               Ready to watch? Enter your email to create or restart your
@@ -57,22 +85,36 @@ const Landing = () => {
           </div>
           <div className="landing-Tv">
             <div className="landing-Tv-text">
-              <h1>Enjoy on your TV.</h1>
+              <h1>Watch Everywhere.</h1>
               <h2>
-                Watch on smart TVs, Playstations, Xbox, Chromecast, Apple TV,
-                Blu-ray players and more
+                Stream unlimited films and TV programmes on your phone, tablet,
+                laptop and TV without paying more.
               </h2>
             </div>
             <div className="landing-Tv-image">
               <img className="landing-img-imac" src={imac} alt="imac" />
             </div>
           </div>
-          <div style={{
-            backgroundColor: "black",
-          }} className="try">
+          <div
+            style={{
+              backgroundColor: "black",
+            }}
+            className="try"
+          >
             <div className="search_bar">
-              <input type="text" placeholder="Email address" />
-              <button className="search_button">TRY IT NOW {">"}</button>
+              <input
+                type="text"
+                placeholder="Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <button
+                className="search_button"
+                onClick={() => handleSubmit(email)}
+              >
+                TRY IT NOW {">"}
+              </button>
             </div>
             <p>
               Ready to watch? Enter your email to create or restart your

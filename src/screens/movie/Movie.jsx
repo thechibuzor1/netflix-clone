@@ -12,7 +12,6 @@ import Navbar from "../../components/Nav/Nav";
 function Movie() {
   const [activeTab, setActiveTab] = useState("similar");
   const location = useLocation();
-  console.log(location.state.movie);
   const img_url = imageUrl + location.state.movie.backdrop_path;
   const similar_url =
     location.state.movie.media_type === "tv" ? "/tv/" : "/movie/";
