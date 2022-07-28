@@ -19,13 +19,13 @@
   max-height: 250px;
   margin-right: 30px;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.1s ease-in-out;
 }
 .smallPoster {
   max-height: 200px;
   margin-right: 30px;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.1s ease-in-out;
 }
 .poster:hover {
   transform: scale(1.1);

@@ -2,7 +2,6 @@
   background-size: cover;
   height: 720px;
   color: white;
-  background-position: center center;
 }
 .content {
   padding-top: 250px;
@@ -28,6 +27,11 @@
   background-color: rgb(231, 9, 9);
   cursor: pointer;
   margin-right: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+.list_button:hover {
+  background-color: rgb(255, 255, 255);
+  color: black;
 }
 
 .button {
@@ -43,6 +47,7 @@
   background-color: black;
   cursor: pointer;
   margin-right: 1rem;
+  transition: all 0.3s ease-in-out;
 }
 .button:hover {
   color: black;

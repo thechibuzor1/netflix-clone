@@ -8,6 +8,26 @@
   justify-content: space-between;
   background-color: #111;
 }
+.right_icons{
+  display: flex;
+  justify-content:  space-between;
+  align-items: center;
+}
+.right_icons .search_icon{
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-right: 20px;
+  position: fixed;
+  right: 40px;
+  width: 30px;
+  transition: all 0.3s ease-in-out;
+}
+
+.right_icons .search_icon:hover{
+  color: #ff0000;
+}
 
 .logo {
   position: fixed;
@@ -22,19 +42,14 @@
   width: 30px;
 }
 @media screen and (max-width: 1024px) {
-  .logo {
-    position: fixed;
-    left: 20px;
-    height: 30px;
-    width: 90px;
+  .navbar {
+    height: 25px;
   }
 }
 /*  MEDIA QUERIES (SMALL DEVICES) */
 @media screen and (max-width: 600px) {
-  .logo {
-    position: fixed;
-    left: 20px;
-    height: 35px;
-    width: 95px;
+   
+  .navbar {
+    height: 20px;
   }
 }

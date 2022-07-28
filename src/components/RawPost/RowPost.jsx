@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./RowPost.css";
 import { imageUrl, API_KEY } from "../../constants";
 import axios from "../../Axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; 
 
 function RowPost(props) {
   const navigate = useNavigate();
@@ -37,9 +37,10 @@ function RowPost(props) {
       <div className="posters">
         {movies.map((movie) => (
           <img
+          key={movie.id}
             onClick={() =>
-              navigate(`/movie/${movie.title || movie.name}`, {
-                state: { movie: movie, urlId: urlId, url: props.url },
+              navigate(`/${movie.media_type || "movie"}`, {
+                state: { movie: movie, url: props.url },
               })
             }
             src={`${imageUrl + movie.poster_path}`}

@@ -5,14 +5,18 @@ import Home from "./screens/home/Home";
 import Movie from "./screens/movie/Movie";
 import Navbar from "./components/Nav/Nav";
 
+import Search from "./screens/discover/Search";
+import Landing from "./screens/Landing/Landing";
+
 function App() {
   return (
     <Router>
-      <Navbar />
       <Routes>
         <Route path="/" element={<Splash />} />
         <Route path="/Home" element={<Home />} />
-        <Route path="/movie/:name" element={<Movie />} />
+        <Route path="/Landing" element={<Landing />} />
+        <Route path="/:type" element={<Movie />} />
+        <Route path="/Search" element={<Search />} />
       </Routes>
     </Router>
   );

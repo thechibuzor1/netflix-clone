@@ -46,23 +46,61 @@
   display: flex;
   justify-content: space-between;
 }
-.movie .buttons .button {
+.active_button {
+  color: black;
+  outline: none;
+  font-weight: bold;
+  border-radius: 7px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  cursor: pointer;
+  margin-right: 1rem;
   margin-left: 20px;
-  border-color: black;
+  border-color: rgb(255, 255, 255);
   border-width: 1px;
-  background-color: red;
+  background-color: rgb(0, 0, 0);
   text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  border-bottom: 2px solid rgb(255, 255, 255);
 }
-.movie .buttons .button:hover {
-  background-color: #e6e6e6;
+
+.inactive_button {
+  color: white;
+  outline: none;
+  font-weight: bold;
+  border-radius: 7px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  cursor: pointer;
+  margin-right: 1rem;
+  margin-left: 20px;
+  border-color: rgb(255, 255, 255);
+  border-width: 1px;
+  background-color: rgb(0, 0, 0);
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  border-bottom: 2px solid rgb(255, 255, 255);
 }
-.movie .buttons .button:active {
-  background-color: #e6e6e6;
-  border-color: red;
+.active_button:hover{
+  color: white
 }
-.movie .buttons .button:focus {
-  background-color: #e6e6e6;
-  border-color: red;
+.inactive_button:hover {
+  background-color: #ff0000;
+  border-color: rgb(0, 0, 0);
+}
+.active_button,
+.inactive_button:active {
+  background-color: #ff0000;
+  border-color: rgb(0, 0, 0);
+}
+.active_button,
+.inactive_button:focus {
+  background-color: #ff0000;
+  border-color: rgb(0, 0, 0);
 }
 .similar_movies {
   margin-top: 30px;

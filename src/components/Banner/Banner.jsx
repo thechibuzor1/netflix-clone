@@ -4,8 +4,10 @@ import axios from "../../Axios";
 import { imageUrl, API_KEY } from "../../constants";
 import { trending } from "../../urls";
 import YouTube from "react-youtube";
+import { useNavigate } from "react-router-dom";
 
 function Banner() {
+  const navigate = useNavigate();
   const [movie, setMovie] = useState();
   useEffect(() => {
     axios.get(trending).then((response) => {
@@ -16,9 +18,8 @@ function Banner() {
       );
     });
   }, []);
-  console.log(movie);
   const opts = {
-    height: "448",
+    height: "390",
     width: "100%",
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
@@ -45,14 +46,29 @@ function Banner() {
     >
       {videoId && <YouTube opts={opts} videoId={videoId.key} />}
       <div className="content">
-        <h1 className="title">{movie ? movie.media_type ==="movie" ? movie.title : movie.name :""}</h1>
+        <h1 className="title">
+          {movie
+            ? movie.media_type === "movie"
+              ? movie.title
+              : movie.name
+            : ""}
+        </h1>
         <div className="banner_buttons">
-          <button onClick={() => handleMovies(movie.id)} className="button">
+          <button
+            onClick={() =>
+              navigate(`/${movie.media_type || "movie"}/`, {
+                state: { movie: movie, url: trending },
+              })
+            }
+            className="button"
+          >
             Play
           </button>
           <button className="list_button">My List</button>
         </div>
-        <h1 className="description">{movie ? movie.overview.slice(0, 100)+"..."  : ""}</h1>
+        <h1 className="description">
+          {movie ? movie.overview.slice(0, 100) + "..." : ""}
+        </h1>
       </div>
 
       <div className="fade_bottom"></div>

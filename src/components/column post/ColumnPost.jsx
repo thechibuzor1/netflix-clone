@@ -37,8 +37,9 @@ function ColumnPost(props) {
       <div className="column_posters">
         {movies.map((movie) => (
           <img
+            key={movie.id}
             onClick={() =>
-              navigate(`/movie/${movie.title || movie.name}`, {
+              navigate(`/${movie.media_type || "movie"}`, {
                 state: { movie: movie, urlId: urlId, url: props.url },
               })
             }
