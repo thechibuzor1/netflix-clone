@@ -7,70 +7,65 @@ import { isAuth, generateToken } from "../utils.js";
 const userRouter = express.Router();
 
 userRouter.post(
-  "/signup",
+  "/signin",
   expressAsyncHandler(async (req, res) => {
-    const { name, email, password } = req.body;
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: req.body.email });
     if (user) {
-      return res.status(400).json({ error: "User already exists" });
+      if (bcrypt.compareSync(req.body.password, user.password)) {
+        res.send({
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          token: generateToken(user),
+        });
+        return;
+      }
     }
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({
-      name,
-      email,
-      password: hashedPassword,
-    });
-    await newUser.save();
-    const token = generateToken(newUser);
-    res.send({
-      _id: newUser._id,
-      name: newUser.name,
-      email: newUser.email,
-      token: token,
-    });
+    res.status(401).send({ message: "Invalid email or password" });
   })
 );
 
 userRouter.post(
-  "/signin",
+  "/signup",
   expressAsyncHandler(async (req, res) => {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).json({ error: "User does not exist" });
-    }
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
-      return res.status(400).json({ error: "Invalid password" });
-    }
-    const token = generateToken(user);
+    const newUser = new User({
+      name: req.body.name,
+      email: req.body.email,
+      password: bcrypt.hashSync(req.body.password),
+    });
+    const user = await newUser.save();
     res.send({
       _id: user._id,
       name: user.name,
       email: user.email,
-      token: token,
+      token: generateToken(user),
     });
   })
 );
 
-userRouter.get(
-    "/me",
-    isAuth,
-    expressAsyncHandler(async (req, res) => {
-        const user = await User.findById(req.user._id);
-        res.send(user);
-        }
-    )
-);
+userRouter.put(
+  "/profile",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id);
+    if (user) {
+      user.name = req.body.name || user.name;
+      user.email = req.body.email || user.email;
+      if (req.body.password) {
+        user.password = bcrypt.hashSync(req.body.password, 8);
+      }
 
-userRouter.get(
-    "/:id",
-    isAuth,
-    expressAsyncHandler(async (req, res) => {
-        const user = await User.findById(req.params.id);
-        res.send(user);
-        }
-    )
+      const updatedUser = await user.save();
+      res.send({
+        _id: updatedUser._id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        token: generateToken(updatedUser),
+      });
+    } else {
+      res.status(404).send({ message: "User not found" });
+    }
+  })
 );
 
 export default userRouter;

@@ -64,7 +64,6 @@ function Banner() {
           >
             Play
           </button>
-          <button className="list_button">My List</button>
         </div>
         <h1 className="description">
           {movie ? movie.overview.slice(0, 100) + "..." : ""}

@@ -5,6 +5,8 @@ import tv from "../../assests/home-tv.jpg";
 import mobile from "../../assests/home-mobile.jpg";
 import imac from "../../assests/home-imac.jpg";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 const Landing = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
@@ -13,6 +15,8 @@ const Landing = () => {
       navigate(`/Auth`, {
         state: { email: email, isSignup: true },
       });
+    } else {
+      toast.error("Please enter a valid email address");
     }
   };
   const login = () => {
@@ -22,6 +26,9 @@ const Landing = () => {
   };
   return (
     <>
+      <Helmet>
+        <title>Welcome</title>
+      </Helmet>
       <div className="navbar">
         <img
           className="logo"
@@ -124,7 +131,7 @@ const Landing = () => {
               <p>
                 <span>creator: The_Chibuzor</span>
                 <br />
-                all rights reserved.
+                <p>Copyright &copy; 2022</p>
               </p>
             </div>
           </div>

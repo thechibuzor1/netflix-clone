@@ -3,27 +3,24 @@ import { useReducer, createContext } from "react";
 export const Store = createContext();
 
 const initialState = {
-  userInfo: localStorage.getItem("userInfo")
-    ? JSON.parse(localStorage.getItem("userInfo"))
+  userData: localStorage.getItem("userData")
+    ? JSON.parse(localStorage.getItem("userData"))
     : null,
 };
 
 function reducer(state, action) {
   switch (action.type) {
     case "USER_SIGNIN":
-      return { ...state, userInfo: action.payload };
+      return { ...state, userData: action.payload };
     case "USER_SIGNOUT":
-      return { ...state, userInfo: null };
+      return { ...state, userData: null };
     default:
       return state;
   }
 }
 
-export function StoreProvider({ props }) {
+export function StoreProvider(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  return (
-    <Store.Provider value={{ state, dispatch }}>
-      {props.children}
-    </Store.Provider>
-  );
+  const value = { state, dispatch };
+  return <Store.Provider value={value}>{props.children} </Store.Provider>;
 }

@@ -6,7 +6,7 @@
   height: 100vh;
   color: white;
 }
-.navbar{
+.auth .navbar{
     background-color: transparent;
 }
 .auth__form-container {
@@ -37,7 +37,19 @@
   border-radius: 10px;
   margin-bottom: 20px;
 }
-.auth-input input {
+.auth-input  input {
+  align-self: center;
+  width: 90%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  padding: 0 10px;
+  border-radius: 5px;
+  background-color: rgb(20, 20, 20);
+  color: white;
+}
+.auth-input  .input {
   align-self: center;
   width: 100%;
   height: 100%;
@@ -48,6 +60,9 @@
   border-radius: 5px;
   background-color: rgb(20, 20, 20);
   color: white;
+}
+.passwordIcon{
+    color: white;
 }
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */

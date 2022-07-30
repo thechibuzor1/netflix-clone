@@ -22,6 +22,7 @@ import { API_KEY } from "../../constants";
 import loader from "../../assests/loader.json";
 import Lottie from "lottie-react";
 import Navbar from "../../components/Nav/Nav";
+import { Helmet } from "react-helmet-async";
 
 function Search() {
   const [genreListMovie, setGenreListMovie] = useState([]);
@@ -87,6 +88,9 @@ function Search() {
 
   return (
     <>
+      <Helmet>
+        <title>Discover</title>
+      </Helmet>
       <Navbar />
       <div className="discover">
         <div className="discover_search">
@@ -207,6 +211,11 @@ function Search() {
             )}
           </div>
         </div>
+      </div>
+      <div className="footer">
+        <p>
+          <p>Copyright &copy; 2022</p>
+        </p>
       </div>
     </>
   );

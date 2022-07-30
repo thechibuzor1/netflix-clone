@@ -6,14 +6,16 @@
   padding: 20px;
   display: flex;
   justify-content: space-between;
-  background-color: #111;
+  background-color: rgb(0, 0, 0);
+  color: white;
 }
-.right_icons{
+
+.right_icons {
   display: flex;
-  justify-content:  space-between;
+  justify-content: space-between;
   align-items: center;
 }
-.right_icons .search_icon{
+.right_icons .search_icon {
   cursor: pointer;
   color: white;
   font-weight: bold;
@@ -25,7 +27,7 @@
   transition: all 0.3s ease-in-out;
 }
 
-.right_icons .search_icon:hover{
+.right_icons .search_icon:hover {
   color: #ff0000;
 }
 
@@ -40,16 +42,28 @@
   position: fixed;
   right: 20px;
   width: 30px;
+  
+}
+.avatar:hover {
+  cursor: pointer;
+  border: 1px solid #ff0000;
 }
 @media screen and (max-width: 1024px) {
   .navbar {
     height: 25px;
   }
+  .logo{
+    width: 80px;
+    height: 30px;
+  }
 }
 /*  MEDIA QUERIES (SMALL DEVICES) */
 @media screen and (max-width: 600px) {
-   
   .navbar {
     height: 20px;
+  }
+  .logo{
+    width: 80px;
+    height: 25px;
   }
 }
