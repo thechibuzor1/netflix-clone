@@ -11,6 +11,7 @@ import Auth from "./screens/Auth/Auth";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./screens/profile/Profile";
 import Watching from "./screens/watching/Watching";
+import NotFound from "./screens/404/NotFound";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <ToastContainer position="bottom-center" limit={1} />
       <Routes>
         <Route path="/" element={<Splash />} />
+        <Route path="/*" element={<NotFound />} />
         <Route
           path="/Home"
           element={
