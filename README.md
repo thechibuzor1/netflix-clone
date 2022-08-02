@@ -8,3 +8,15 @@ Styles compoenets and a very "real" Ui.
 demo app: http://netflix-remake.herokuapp.com/
 
 
+![My Image](Capture.PNG)
+![My Image](Capture1.PNG)
+![My Image](Capture2.PNG)
+![My Image](Capture3.PNG)
+![My Image](Capture4.PNG)
+![My Image](Capture5.PNG)
+![My Image](Capture6.PNG)
+![My Image](Capture7.PNG)
+![My Image](Capture8.PNG)
+![My Image](Capture9.PNG)
+![My Image](Capture10.PNG)
+![My Image](Capture11.PNG)
