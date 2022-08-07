@@ -68,4 +68,62 @@ userRouter.put(
   })
 );
 
+userRouter.post(
+  "/list",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id);
+    if (user) {
+      if (user.list.find((x) => x.title === req.body.title)) {
+        return res
+          .status(400)
+          .send({ message: "You already added this to your list" });
+      } else {
+        const movie = {
+          movie: req.body.movie,
+          title: req.body.title,
+        };
+        user.list.push(movie);
+        await user.save();
+        res.send({ message: "Movie Added" });
+      }
+    } else {
+      res.status(404).send({ message: "User not found" });
+    }
+  })
+);
+
+userRouter.get(
+  "/list",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id);
+    if (user) {
+      res.send({
+        list: user.list,
+      });
+    } else {
+      res.status(404).send({ message: "User not found" });
+    }
+  })
+);
+
+userRouter.delete(
+  "/list/:title",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id);
+    if (user) {
+      const movie = user.list.find((x) => x.title === req.params.title);
+      if (movie) {
+        user.list.pull(movie);
+        await user.save();
+        res.send({ message: "Movie Removed" });
+      } else {
+        res.status(404).send({ message: "This Movie is not in your list." });
+      }
+    }
+  })
+);
+
 export default userRouter;

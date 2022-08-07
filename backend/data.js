@@ -6,6 +6,7 @@ const data = {
       name: "Chibuzor",
       email: "chibuzor@ex.com",
       password: bcrypt.hashSync("123456"),
+      list: [],
     },
   ],
 };

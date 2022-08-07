@@ -12,6 +12,81 @@
 .play_btn:focus {
   color: black;
 }
+.movie_buttons {
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  height: 100px;
+  background-color: transparent;
+  border-radius: 7px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.movie_buttons .add_btn {
+  background-color: rgb(255, 0, 0);
+  text-align: center;
+  color: white;
+  border: none;
+  outline: none;
+  height: 100%;
+  border-radius: 7px;
+  padding: 0 10px;
+  font-size: 20px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  margin-right: 20px;
+}
+.movie_buttons .add_btn:hover {
+  color: black;
+  background-color: rgb(255, 255, 255);
+}
+.movie_buttons .add_btn:active {
+  color: black;
+}
+.movie_buttons .add_btn:focus {
+  color: black;
+}
+
+.movie_buttons .remove_btn {
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+  color: rgb(0, 0, 0);
+  border: none;
+  outline: none;
+  height: 100%;
+  border-radius: 7px;
+  padding: 0 10px;
+  font-size: 20px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+.movie_buttons .remove_btn:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
+}
+.movie_buttons .remove_btn:active {
+  color: rgb(255, 255, 255);
+}
+.movie_buttons .remove_btn:focus {
+  color: rgb(255, 255, 255);
+}
+.remove_icon {
+  margin-top: 5px;
+  font-size: 2rem;
+  color: rgb(255, 0, 0);
+  transition: all 0.3s ease-in-out;
+}
+
+.plus_icon {
+  margin-top: 5px;
+  font-size: 2rem;
+  color: black;
+  transition: all 0.3s ease-in-out;
+}
 
 .movie_player {
   margin-top: 30px;
@@ -85,8 +160,8 @@
   transition: all 0.3s ease-in-out;
   border-bottom: 2px solid rgb(255, 255, 255);
 }
-.active_button:hover{
-  color: white
+.active_button:hover {
+  color: white;
 }
 .inactive_button:hover {
   background-color: #ff0000;
@@ -114,6 +189,9 @@
   .movie_description {
     margin-left: 20px;
   }
+  .movie_buttons {
+    width: 50%;
+  }
 }
 /*  MEDIA QUERIES (SMALL DEVICES) */
 @media screen and (max-width: 600px) {
@@ -137,5 +215,11 @@
     font-size: 0.8rem;
     font-weight: bold;
     margin-bottom: 0.5em;
+  }
+  .movie_buttons h2 {
+    font-size: 0.6rem;
+  }
+  .movie_buttons {
+     
   }
 }

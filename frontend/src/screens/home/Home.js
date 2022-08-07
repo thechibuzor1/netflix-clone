@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Home.css";
 import Banner from "../../components/Banner/Banner";
 import {
@@ -18,10 +18,37 @@ import RowPost from "../../components/RawPost/RowPost";
 import Navbar from "../../components/Nav/Nav";
 import { Store } from "../../Store";
 import { Helmet } from "react-helmet-async";
+import { toast } from "react-toastify";
+import { getError } from "../../utils";
+import Axios from "axios";
+import MyListCol from "../../components/MyList/MyListCol";
 
 function Home() {
-  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { state } = useContext(Store);
   const { userData } = state;
+
+  const [myList, setMyList] = useState([]);
+  useEffect(() => {
+    const fetchList = async () => {
+      const myList = [];
+      try {
+        const result = await Axios.get(`/api/users/list`, {
+          headers: {
+            authorization: `Bearer ${userData.token}`,
+          },
+        });
+
+        for (const element of result.data.list) {
+          myList.push(element.movie[0]);
+        }
+        setMyList(myList); // set myList to the result of the axios request
+      } catch (err) {
+        toast.error(getError(err));
+      }
+    };
+    fetchList();
+  }, [userData.token]);
+
   return (
     <>
       <Helmet>
@@ -31,6 +58,7 @@ function Home() {
       <div className="home">
         <Banner />
         <RowPost url={trending} title={`Top Picks for ${userData.name}`} />
+        {myList.length > 0 ? <MyListCol url={myList} title="My List" /> : <></>}
         <RowPost url={theatres} title="In Theatres" />
         <RowPost url={popular} title="Popular" />
         <RowPost url={horror} title="Horror" isSmall />

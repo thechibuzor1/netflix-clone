@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Banner.css";
 import axios from "../../Axios";
-import { imageUrl, API_KEY } from "../../constants";
+import { imageUrl } from "../../constants";
 import { trending } from "../../urls";
-import YouTube from "react-youtube";
 import { useNavigate } from "react-router-dom";
 
 function Banner() {
@@ -18,25 +17,6 @@ function Banner() {
       );
     });
   }, []);
-  const opts = {
-    height: "390",
-    width: "100%",
-    playerVars: {
-      // https://developers.google.com/youtube/player_parameters
-      autoplay: 1,
-    },
-  };
-  const [videoId, setVideoId] = useState("");
-  const handleMovies = (id) => {
-    console.log(id);
-    axios
-      .get(`/movie/${id}/videos?api_key=${API_KEY}&language=en-US`)
-      .then((response) => {
-        if (response.data.results.length !== 0) {
-          setVideoId(response.data.results[0]);
-        }
-      });
-  };
   return (
     <div
       className="banner"
@@ -44,7 +24,6 @@ function Banner() {
         backgroundImage: `url(${movie ? imageUrl + movie.backdrop_path : ""})`,
       }}
     >
-      {videoId && <YouTube opts={opts} videoId={videoId.key} />}
       <div className="content">
         <h1 className="title">
           {movie
@@ -56,13 +35,16 @@ function Banner() {
         <div className="banner_buttons">
           <button
             onClick={() =>
-              navigate(`/${movie.media_type || "movie"}/`, {
-                state: { movie: movie, url: trending },
+              navigate(`/Movie`, {
+                state: { movie: movie },
               })
             }
             className="button"
           >
             Play
+          </button>
+          <button onClick={() => navigate(`/MyList`)} className="list_button">
+            List
           </button>
         </div>
         <h1 className="description">

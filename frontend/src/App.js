@@ -12,6 +12,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./screens/profile/Profile";
 import Watching from "./screens/watching/Watching";
 import NotFound from "./screens/404/NotFound";
+import MyList from "./screens/MyList/MyList";
 
 function App() {
   return (
@@ -19,7 +20,17 @@ function App() {
       <ToastContainer position="bottom-center" limit={1} />
       <Routes>
         <Route path="/" element={<Splash />} />
-        <Route path="/*" element={<NotFound />} />
+        <Route path="" element={<NotFound />} />
+        <Route path="*" element={<NotFound />} />
+        <Route element={<NotFound />} />
+        <Route
+          path="/MyList"
+          element={
+            <ProtectedRoute>
+              <MyList />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/Home"
           element={
@@ -30,7 +41,7 @@ function App() {
         />
         <Route path="/Landing" element={<Landing />} />
         <Route
-          path="/:type"
+          path="/Movie"
           element={
             <ProtectedRoute>
               <Movie />
