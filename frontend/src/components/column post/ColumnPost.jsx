@@ -11,14 +11,16 @@ function ColumnPost(props) {
   const movieUrl = `/movie/` + url;
   const tvUrl = `/tv/` + url;
   useEffect(() => {
-    const MovieData = axios.get(movieUrl);
-    const TvData = axios.get(tvUrl);
-    MovieData.then((response) => {
-      setMovies(response.data.results);
-    });
-    TvData.then((response) => {
-      setMovies(response.data.results);
-    });
+    axios
+      .get(movieUrl)
+      .then((response) => {
+        setMovies(response.data.results);
+      })
+      .catch(() => {
+        axios.get(tvUrl).then((response) => {
+          setMovies(response.data.results);
+        });
+      });
   }, [movieUrl, tvUrl]);
 
   return (

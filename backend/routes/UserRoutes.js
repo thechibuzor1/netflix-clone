@@ -126,4 +126,42 @@ userRouter.delete(
   })
 );
 
+userRouter.post(
+  "/history",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id);
+    if (user) {
+      if (user.history.find((x) => x.title === req.body.title)) {
+        return;
+      } else {
+        const movie = {
+          movie: req.body.movie,
+          title: req.body.title,
+        };
+        user.history.push(movie);
+        await user.save();
+        res.send({ message: " " });
+      }
+    } else {
+      res.status(404).send({ message: "User not found" });
+    }
+  })
+);
+
+userRouter.get(
+  "/history",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id);
+    if (user) {
+      res.send({
+        history: user.history,
+      });
+    } else {
+      res.status(404).send({ message: "User not found" });
+    }
+  })
+);
+
 export default userRouter;

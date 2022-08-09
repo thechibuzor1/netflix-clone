@@ -32,22 +32,25 @@ function Movie() {
   };
   const [urlId, setUrlId] = useState("");
   const handleMovies = (id) => {
-    const Moviedata = axios.get(
-      `/movie/${id}/videos?api_key=${API_KEY}&language=en-US`
-    );
-    Moviedata.then((response) => {
-      if (response.data.results.length !== 0) {
-        setUrlId(response.data.results[0]);
-      }
-    });
-    const Tvdata = axios.get(
-      `/tv/${id}/videos?api_key=${API_KEY}&language=en-US`
-    );
-    Tvdata.then((response) => {
-      if (response.data.results.length !== 0) {
-        setUrlId(response.data.results[0]);
-      }
-    });
+    axios
+      .get(`/movie/${id}/videos?api_key=${API_KEY}&language=en-US`)
+      .then((response) => {
+        if (response.data.results.length !== 0) {
+          setUrlId(response.data.results[0]);
+        }
+      })
+      .catch(() => {
+        axios
+          .get(`/tv/${id}/videos?api_key=${API_KEY}&language=en-US`)
+          .then((response) => {
+            if (response.data.results.length !== 0) {
+              setUrlId(response.data.results[0]);
+            }
+          });
+      })
+      .catch((err) => {
+        console.log(getError(err));
+      });
   };
 
   const addToList = async (movie) => {
@@ -63,6 +66,23 @@ function Movie() {
         }
       );
       toast.success("Added to list");
+    } catch (err) {
+      toast.error(getError(err));
+    }
+  };
+
+  const addToHistory = async (movie) => {
+    try {
+      await Axios.post(
+        `/api/users/history`,
+        {
+          movie: movie,
+          title: location.state.movie.title || location.state.movie.name,
+        },
+        {
+          headers: { Authorization: `Bearer ${userData.token}` },
+        }
+      );
     } catch (err) {
       toast.error(getError(err));
     }
@@ -85,6 +105,7 @@ function Movie() {
       <div className="movie">
         <div className="movie_player">
           <ReactPlayer
+            onPlay={() => addToHistory(location.state.movie)}
             url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
             playing
             playIcon={<BsPlay className="play_btn" />}

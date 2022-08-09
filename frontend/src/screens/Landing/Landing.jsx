@@ -20,6 +20,9 @@ const Landing = () => {
     }
   };
   const login = () => {
+    toast.error(
+      "If you see a 'user not found' error, you may have to recreate an account. The user models were reconfigured to use the new user schema. Please recreate your account."
+    );
     navigate(`/Auth`, {
       state: { email: email, isSignup: false },
     });

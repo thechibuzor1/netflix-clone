@@ -28,6 +28,9 @@ function Home() {
   const { userData } = state;
 
   const [myList, setMyList] = useState([]);
+  
+  const [myHistory, setMyHistory] = useState([]);
+
   useEffect(() => {
     const fetchList = async () => {
       const myList = [];
@@ -46,8 +49,28 @@ function Home() {
         toast.error(getError(err));
       }
     };
+    const fetchHistory = async () => {
+      const myHistory = [];
+      try {
+        const result = await Axios.get(`/api/users/history`, {
+          headers: {
+            authorization: `Bearer ${userData.token}`,
+          },
+        });
+          for (const element of result.data.history) {
+            myHistory.push(element.movie[0]);
+          }
+          setMyHistory(myHistory); // set myHistory to the result of the axios request
+      } catch (err) {
+        toast.error(getError(err));
+      }
+    };
+
     fetchList();
+    fetchHistory();
   }, [userData.token]);
+
+  console.log(myHistory);
 
   return (
     <>
@@ -59,6 +82,7 @@ function Home() {
         <Banner />
         <RowPost url={trending} title={`Top Picks for ${userData.name}`} />
         {myList.length > 0 ? <MyListCol url={myList} title="My List" /> : <></>}
+        {myHistory.length > 0 ? <MyListCol url={myHistory} title="What Again" /> : <></>}
         <RowPost url={theatres} title="In Theatres" />
         <RowPost url={popular} title="Popular" />
         <RowPost url={horror} title="Horror" isSmall />
