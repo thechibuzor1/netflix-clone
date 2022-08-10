@@ -82,7 +82,7 @@ function Home() {
         <Banner />
         <RowPost url={trending} title={`Top Picks for ${userData.name}`} />
         {myList.length > 0 ? <MyListCol url={myList} title="My List" /> : <></>}
-        {myHistory.length > 0 ? <MyListCol url={myHistory} title="What Again" /> : <></>}
+        {myHistory.length > 0 ? <MyListCol url={myHistory} title="Watch it Again" /> : <></>}
         <RowPost url={theatres} title="In Theatres" />
         <RowPost url={popular} title="Popular" />
         <RowPost url={horror} title="Horror" isSmall />
