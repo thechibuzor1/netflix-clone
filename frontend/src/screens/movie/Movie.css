@@ -14,9 +14,8 @@
 }
 .movie_buttons {
   display: flex;
-  justify-content:center;
+  justify-content: flex-start;
   align-items: center;
-  width: 100%;
   margin: 0 auto;
   height: 100px;
   background-color: transparent;
@@ -25,7 +24,6 @@
   margin-top: 20px;
 }
 .movie_buttons .add_btn {
-  background-color: rgb(255, 0, 0);
   text-align: center;
   color: white;
   border: none;
@@ -41,7 +39,7 @@
 }
 .movie_buttons .add_btn:hover {
   color: black;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 0, 0);
 }
 .movie_buttons .add_btn:active {
   color: black;
@@ -77,14 +75,14 @@
 .remove_icon {
   margin-top: 5px;
   font-size: 2rem;
-  color: rgb(255, 0, 0);
+  color:white;
   transition: all 0.3s ease-in-out;
 }
 
 .plus_icon {
   margin-top: 5px;
   font-size: 2rem;
-  color: black;
+  color: white;
   transition: all 0.3s ease-in-out;
 }
 
@@ -190,7 +188,6 @@
     margin-left: 20px;
   }
   .movie_buttons {
-    width: 50%;
   }
 }
 /*  MEDIA QUERIES (SMALL DEVICES) */

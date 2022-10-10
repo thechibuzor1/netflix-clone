@@ -127,6 +127,25 @@ userRouter.delete(
 );
 
 userRouter.post(
+  "/checklist",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id);
+    if (user) {
+      if (user.list.find((x) => x.title === req.body.title)) {
+        res.send({
+          InLIst: true,
+        });
+      } else {
+        res.send({
+          InLIst: false,
+        });
+      }
+    }
+  })
+);
+
+userRouter.post(
   "/history",
   isAuth,
   expressAsyncHandler(async (req, res) => {

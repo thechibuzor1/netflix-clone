@@ -14,12 +14,13 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { getError } from "../../utils";
 import { Store } from "../../Store";
 import { VscRemove } from "react-icons/vsc";
-
+import { useEffect } from "react";
 function Movie() {
   const { state } = useContext(Store);
   const { userData } = state;
   const [activeTab, setActiveTab] = useState("similar");
   const location = useLocation();
+  const [inList, setInlist] = useState(false);
   const img_url = imageUrl + location.state.movie.backdrop_path;
   const similarUrl = `${location.state.movie.id}/similar?api_key=${API_KEY}&language=en-US&page=1`;
   const opts = {
@@ -30,6 +31,30 @@ function Movie() {
       autoplay: 1,
     },
   };
+
+
+  useEffect(() => {
+    const fetchCheck = async () => {
+      try {
+        const result = await Axios.post(
+          `/api/users/checklist`,
+          {
+            title: location.state.movie.title || location.state.movie.name,
+          },
+          {
+            headers: { Authorization: `Bearer ${userData.token}` },
+          }
+        );
+        setInlist(result.data.InLIst);
+        console.log(inList);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchCheck();
+  }, [inList, location.state.movie.name, location.state.movie.title, userData.token]);
+
   const [urlId, setUrlId] = useState("");
   const handleMovies = (id) => {
     axios
@@ -65,6 +90,7 @@ function Movie() {
           headers: { Authorization: `Bearer ${userData.token}` },
         }
       );
+      setInlist(true);
       toast.success("Added to list");
     } catch (err) {
       toast.error(getError(err));
@@ -93,6 +119,7 @@ function Movie() {
       await Axios.delete(`/api/users/list/${movie.title || movie.name}`, {
         headers: { Authorization: `Bearer ${userData.token}` },
       });
+      setInlist(false);
       toast.success("Removed from list");
     } catch (err) {
       toast.error(getError(err));
@@ -127,22 +154,25 @@ function Movie() {
           <h2>Language: {location.state.movie.original_language}</h2>
 
           <div className="movie_buttons">
-            <div
-              className="add_btn"
-              onClick={() => {
-                addToList(location.state.movie);
-              }}
-            >
-              <AiOutlinePlus className="plus_icon" />
-              <h2>Add to my list</h2>
-            </div>
-            <div
-              className="remove_btn"
-              onClick={() => removeFromList(location.state.movie)}
-            >
-              <VscRemove className="remove_icon" />
-              <h2>Remove from my list</h2>
-            </div>
+            {inList ? (
+              <div
+                className="add_btn"
+                onClick={() => removeFromList(location.state.movie)}
+              >
+                <VscRemove className="remove_icon" />
+                <h2>Remove from my list</h2>
+              </div>
+            ) : (
+              <div
+                className="add_btn"
+                onClick={() => {
+                  addToList(location.state.movie);
+                }}
+              >
+                <AiOutlinePlus className="plus_icon" />
+                <h2>Add to my list</h2>
+              </div>
+            )}
           </div>
         </div>
         <div className="buttons">
