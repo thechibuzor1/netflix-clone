@@ -1,0 +1,157 @@
+.discover {
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  margin-top: 100px;
+}
+.discover h1 {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.discover_items h1 {
+  text-align: left;
+  margin-left: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  padding-top: 40px;
+  margin-bottom: 20px;
+}
+.search_icon {
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-right: 15px;
+}
+.search_bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.search_bar input {
+  align-self: center;
+  width: 90%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  padding: 0 10px;
+  border-radius: 5px;
+}
+.search_bar .search_button {
+  background-color: rgb(255, 0, 0);
+  color: white;
+  border: none;
+  outline: none;
+  height: 100%;
+  border-radius: 5px;
+  padding: 0 10px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 5px;
+  transition: all 0.3s ease-in-out;
+}
+.search_bar .search_button:hover {
+  background-color: rgb(255, 255, 255);
+  color: black;
+}
+.search_bar .search_button:active {
+  background-color: #111;
+  color: white;
+}
+.search_results h2 {
+  margin-left: 20px;
+}
+.discover_search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  height: 40px;
+  background-color: transparent;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.discover_search .back_btn {
+  background-color: rgb(255, 0, 0);
+  color: white;
+  border: none;
+  outline: none;
+  height: 100%;
+  border-radius: 5px;
+  padding: 0 10px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 5px;
+  position: relative;
+  left: 20px;
+  transition: all 0.3s ease-in-out;
+}
+.discover_search .back_btn:hover {
+  color: black;
+  background-color: rgb(255, 255, 255);
+}
+.discover_btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  height: 40px;
+  background-color: inherit;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.discover_btns .active {
+  background-color: inherit;
+  color: white;
+  border: none;
+  outline: none;
+  height: 100%;
+  border-radius: 5px;
+  padding: 0 10px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 20px;
+  margin-right: 20px;
+  transition: all 0.1s ease-in-out;
+}
+
+.discover_btns .inactive {
+  background-color: inherit;
+  color: grey;
+  border: none;
+  outline: none;
+  height: 100%;
+  border-radius: 5px;
+  padding: 0 10px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 20px;
+  margin-right: 20px;
+  transition: all 0.1s ease-in-out;
+}
+
+@media screen and (max-width: 1024px) {
+  .search_bar input {
+    width: 80%;
+  }
+}
+/*  MEDIA QUERIES (SMALL DEVICES) */
+@media screen and (max-width: 600px) {
+  .search_bar input {
+    width: 80%;
+  }
+  .search_bar {
+    width: 90%;
+  }
+}
