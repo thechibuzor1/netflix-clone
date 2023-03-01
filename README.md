@@ -5,7 +5,7 @@ similar watch, search bar and so much more.
 written in reactJs.
 It is connected to a mondoDb and nodejs backend for authentication.
 Styles compoenets and a very "real" Ui.
-demo app: http://netflix-remake.herokuapp.com/
+demo app: https://netflix-sample.netlify.app/Home
 
 
 ![My Image](Capture.PNG)
