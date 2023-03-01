@@ -13,6 +13,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Input from "@material-ui/core/Input";
+import { client } from "../../Axios";
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -29,7 +30,6 @@ const Auth = () => {
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
   };
-
   const submitHandler = async (e) => {
     e.preventDefault();
     if (isSignup) {
@@ -48,7 +48,7 @@ const Auth = () => {
           })
         ) {
           try {
-            const { data } = await Axios.post("/api/users/signup", {
+            const { data } = await client.post(`/api/users/signup/`, {
               name,
               email,
               password,
@@ -73,7 +73,7 @@ const Auth = () => {
     }
     if (!isSignup) {
       try {
-        const { data } = await Axios.post("/api/users/signin", {
+        const { data } = await client.post("/api/users/signin", {
           email,
           password,
         });

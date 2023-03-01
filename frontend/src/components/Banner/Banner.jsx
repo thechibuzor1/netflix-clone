@@ -3,6 +3,8 @@ import "./Banner.css";
 import axios from "../../Axios";
 import { imageUrl } from "../../constants";
 import { trending } from "../../urls";
+import { BsPlayFill } from "react-icons/bs";
+import { AiOutlineUnorderedList } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
 function Banner() {
@@ -33,7 +35,7 @@ function Banner() {
             : ""}
         </h1>
         <div className="banner_buttons">
-          <button
+          <div
             onClick={() =>
               navigate(`/Movie`, {
                 state: { movie: movie },
@@ -41,11 +43,13 @@ function Banner() {
             }
             className="button"
           >
+            <BsPlayFill className="play-Icon-Banner" />
             Play
-          </button>
-          <button onClick={() => navigate(`/MyList`)} className="list_button">
+          </div>
+          <div onClick={() => navigate(`/MyList`)} className="list_button">
+            <AiOutlineUnorderedList className="play-Icon-Banner" />
             List
-          </button>
+          </div>
         </div>
         <h1 className="description">
           {movie ? movie.overview.slice(0, 100) + "..." : ""}

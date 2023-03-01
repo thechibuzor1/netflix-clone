@@ -6,3 +6,7 @@ const instance = axios.create({
 });
 
 export default instance;
+
+export const client = axios.create({
+  baseURL: "https://netflix-clone-backend-uoju.onrender.com",
+});

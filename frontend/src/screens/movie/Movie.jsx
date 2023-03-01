@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import "./Movie.css";
 import { imageUrl, API_KEY } from "../../constants";
-import axios from "../../Axios";
+import axios, { client } from "../../Axios";
 import Axios from "axios";
 import YouTube from "react-youtube";
 import { useLocation } from "react-router-dom";
@@ -32,11 +32,10 @@ function Movie() {
     },
   };
 
-
   useEffect(() => {
     const fetchCheck = async () => {
       try {
-        const result = await Axios.post(
+        const result = await client.post(
           `/api/users/checklist`,
           {
             title: location.state.movie.title || location.state.movie.name,
@@ -53,7 +52,12 @@ function Movie() {
     };
 
     fetchCheck();
-  }, [inList, location.state.movie.name, location.state.movie.title, userData.token]);
+  }, [
+    inList,
+    location.state.movie.name,
+    location.state.movie.title,
+    userData.token,
+  ]);
 
   const [urlId, setUrlId] = useState("");
   const handleMovies = (id) => {
@@ -80,7 +84,7 @@ function Movie() {
 
   const addToList = async (movie) => {
     try {
-      await Axios.post(
+      await client.post(
         `/api/users/list`,
         {
           movie: movie,
@@ -99,7 +103,7 @@ function Movie() {
 
   const addToHistory = async (movie) => {
     try {
-      await Axios.post(
+      await client.post(
         `/api/users/history`,
         {
           movie: movie,
@@ -116,7 +120,7 @@ function Movie() {
 
   const removeFromList = async (movie) => {
     try {
-      await Axios.delete(`/api/users/list/${movie.title || movie.name}`, {
+      await client.delete(`/api/users/list/${movie.title || movie.name}`, {
         headers: { Authorization: `Bearer ${userData.token}` },
       });
       setInlist(false);

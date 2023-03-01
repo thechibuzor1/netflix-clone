@@ -22,20 +22,21 @@ import { toast } from "react-toastify";
 import { getError } from "../../utils";
 import Axios from "axios";
 import MyListCol from "../../components/MyList/MyListCol";
+import { client } from "../../Axios";
 
 function Home() {
   const { state } = useContext(Store);
   const { userData } = state;
 
   const [myList, setMyList] = useState([]);
-  
+
   const [myHistory, setMyHistory] = useState([]);
 
   useEffect(() => {
     const fetchList = async () => {
       const myList = [];
       try {
-        const result = await Axios.get(`/api/users/list`, {
+        const result = await client.get(`/api/users/list`, {
           headers: {
             authorization: `Bearer ${userData.token}`,
           },
@@ -52,15 +53,15 @@ function Home() {
     const fetchHistory = async () => {
       const myHistory = [];
       try {
-        const result = await Axios.get(`/api/users/history`, {
+        const result = await client.get(`/api/users/history`, {
           headers: {
             authorization: `Bearer ${userData.token}`,
           },
         });
-          for (const element of result.data.history) {
-            myHistory.push(element.movie[0]);
-          }
-          setMyHistory(myHistory); // set myHistory to the result of the axios request
+        for (const element of result.data.history) {
+          myHistory.push(element.movie[0]);
+        }
+        setMyHistory(myHistory); // set myHistory to the result of the axios request
       } catch (err) {
         toast.error(getError(err));
       }
@@ -82,7 +83,11 @@ function Home() {
         <Banner />
         <RowPost url={trending} title={`Top Picks for ${userData.name}`} />
         {myList.length > 0 ? <MyListCol url={myList} title="My List" /> : <></>}
-        {myHistory.length > 0 ? <MyListCol url={myHistory} title="Watch it Again" /> : <></>}
+        {myHistory.length > 0 ? (
+          <MyListCol url={myHistory} title="Watch it Again" />
+        ) : (
+          <></>
+        )}
         <RowPost url={theatres} title="In Theatres" />
         <RowPost url={popular} title="Popular" />
         <RowPost url={horror} title="Horror" isSmall />

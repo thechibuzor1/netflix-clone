@@ -7,6 +7,7 @@ import MyListRol from "../../components/MyList/MyListRol";
 import Navbar from "../../components/Nav/Nav";
 import { Store } from "../../Store";
 import { getError } from "../../utils";
+import { client } from "../../Axios";
 
 function MyList() {
   const { state } = useContext(Store);
@@ -17,7 +18,7 @@ function MyList() {
     const fetchList = async () => {
       const myList = [];
       try {
-        const result = await Axios.get(`/api/users/list`, {
+        const result = await client.get(`/api/users/list`, {
           headers: {
             authorization: `Bearer ${userData.token}`,
           },

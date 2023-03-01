@@ -14,6 +14,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Input from "@material-ui/core/Input";
 import { Helmet } from "react-helmet-async";
+import { client } from "../../Axios";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -61,7 +62,7 @@ const Profile = () => {
         })
       ) {
         try {
-          const { data } = await axios.put(
+          const { data } = await client.put(
             "/api/users/profile",
             {
               name,
@@ -101,7 +102,7 @@ const Profile = () => {
 
   return (
     <>
-     <Helmet>
+      <Helmet>
         <title>Profile</title>
       </Helmet>
       <Navbar />

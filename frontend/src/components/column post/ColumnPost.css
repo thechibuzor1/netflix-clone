@@ -5,9 +5,9 @@
 }
 .column_posters {
   display: grid;
-  padding: 20px;
+  padding: 16px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
+  gap: 1rem;
 }
 .posters::-webkit-scrollbar {
   display: none;
@@ -18,13 +18,13 @@
 .poster {
   margin-top: 20px;
   max-height: 250px;
-  margin-right: 30px;
+
   cursor: pointer;
   transition: all 0.1s ease-in-out;
 }
 .smallPoster {
   max-height: 200px;
-  margin-right: 30px;
+
   cursor: pointer;
   transition: all 0.1s ease-in-out;
 }
@@ -42,15 +42,11 @@
   }
   .poster {
     max-height: 200px;
-    margin-right: 20px;
-    
   }
   .column_posters {
     grid-template-columns: repeat(4, minmax(200px, 1fr));
     gap: 0rem;
-
   }
-
 }
 /*  MEDIA QUERIES (SMALL DEVICES) */
 @media screen and (max-width: 600px) {
@@ -59,13 +55,10 @@
   }
   .poster {
     max-height: 200px;
-    margin-right: 20px;
-    
   }
   .column_posters {
     padding: 10px;
     grid-template-columns: repeat(2, minmax(200px, 1fr));
     gap: 0.5rem;
-
   }
 }
