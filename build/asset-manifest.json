@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/static/css/main.fbdf8f29.css",
+    "main.js": "/static/js/main.de091496.js",
+    "static/js/787.440c4889.chunk.js": "/static/js/787.440c4889.chunk.js",
+    "static/media/home-bg.jpg": "/static/media/home-bg.e85ef9d3e583db75072a.jpg",
+    "static/media/home-tv.jpg": "/static/media/home-tv.f5135082fccc14d9d166.jpg",
+    "static/media/quandale.png": "/static/media/quandale.b723cda1a1e8d48b84d2.png",
+    "static/media/home-imac.jpg": "/static/media/home-imac.6ee6f16a8ad5b36a07d1.jpg",
+    "static/media/home-mobile.jpg": "/static/media/home-mobile.88ccdb2abd0f1b20427a.jpg",
+    "index.html": "/index.html",
+    "main.fbdf8f29.css.map": "/static/css/main.fbdf8f29.css.map",
+    "main.de091496.js.map": "/static/js/main.de091496.js.map",
+    "787.440c4889.chunk.js.map": "/static/js/787.440c4889.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fbdf8f29.css",
+    "static/js/main.de091496.js"
+  ]
+}
